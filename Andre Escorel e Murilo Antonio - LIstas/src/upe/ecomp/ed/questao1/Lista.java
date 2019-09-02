@@ -7,13 +7,18 @@ public class Lista {
     private Node head;
 
     public boolean add(Cliente newData) {
-        for (Node c = head; c != null; c = c.next)
-            if (c.next == null && !newData.cpf.equals(c.data.cpf)) {
-                c.next = new Node();
-                c.next.data = newData;
-                return true;
-            }
-        return false;
+        if(head == null && head.next == null){
+            head = new Node();
+            head.data = newData;
+            return true;
+        } else
+            for (Node c = head; c != null; c = c.next)
+                if (c.next == null && !newData.cpf.equals(c.data.cpf)) {
+                    c.next = new Node();
+                    c.next.data = newData;
+                    return true;
+                }
+            return false;
     }
 
     public void print() {
