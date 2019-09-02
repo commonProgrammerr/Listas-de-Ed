@@ -5,13 +5,12 @@ import upe.ecomp.ed.questao3.Node;
  */
 public class Lista {
     private Node head;
-    
     public Lista() {
         head = null;
     }
     
     public boolean add(String newData) {
-        if(head == null && head.next == null){
+        if(head == null){
             head = new Node();
             head.data = newData;
             return true;
@@ -23,29 +22,49 @@ public class Lista {
                     return true;
                 }
             return false;
-    
-    }
-    
-    private Node inverter(Node elo) {
-        if(elo.next != null){
-            Node out = inverter(elo.next);
-            out.next = elo;
-            return out;
-        }else 
-            return elo;
     }
 
-    public Void inverter(){
-        head = inverter(head);
-        return null;
+    private boolean add(Node newNode) {
+        newNode.next = null;
+        if(head == null){
+            head = newNode;
+            return true;
+        } else
+            for (Node c = head; c != null; c = c.next)
+                if (c.next == null) {
+                    c.next = newNode;
+                    return true;
+                }
+            return false;
+    }
+    
+    public int size() {
+        int i = 0;
+        for (Node c = head; c != null; c = c.next)
+            i++;
+        return i;
+    }
+
+    public void inverter() {
+        if(this.size() > 0){
+            Node aux = head;
+            head = head.next;;
+            inverter();
+            this.add(aux);
+        }
     }
 
     public void print() {
-        for (Node c = head.next; c != null; c = c.next)
-            System.out.println(c.data);
+        System.out.print("[");
+        for (Node c = head; c != null; c = c.next){
+            if(c.next != null)
+                System.out.print(c.data + ",");
+            else
+                System.out.print(c.data);
+        }
+        System.out.println("]");
     }
 
-    
     public static void main(String[] args) {
         Lista a = new Lista();
         for (int i = 0; i < 5; i++) {

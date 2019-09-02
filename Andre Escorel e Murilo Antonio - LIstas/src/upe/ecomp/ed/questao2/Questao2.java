@@ -9,6 +9,22 @@ public class Questao2 {
     public Questao2() {
         lista = new Integer[1];
     }
+    
+    public void removeAll(Integer j) {
+        for (int i = 0; i < lista.length; i++) {
+            if(lista[i].equals(j)){
+                lista[i] = null;
+            }
+        }
+        Integer[]lst = new Integer[lista.length];
+        int k = 0;
+        for (int i = 0; i < lista.length; i++) {
+            if(lista[i] != null)
+                lst[i] = lista[i - k];
+            else
+                k++;
+        }
+    }
 
     public void add(int ad) {
         try {
@@ -42,7 +58,7 @@ public class Questao2 {
             }
     }
 
-    public void replace(int old, int newInt) {
+    public void replace(Integer old, Integer newInt) {
         for (int i = 0; i < lista.length; i++)
             if (lista[i] == old) {
                 lista[i] = new Integer(newInt);
