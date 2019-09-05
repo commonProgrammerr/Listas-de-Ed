@@ -1,20 +1,42 @@
 package upe.ecomp.ed.questao2;
 
 import upe.ecomp.ed.Dinamic;
-import upe.ecomp.ed.DinamicQueue;
 
 /**
  * Loja
  */
 public class Loja {
-    private Dinamic<DinamicQueue<Pessoa>> caixas;
+    private Dinamic<FilaCaixa> caixas;
     
     public Loja() {
-        caixas = new Dinamic<DinamicQueue<Pessoa>>();
-        caixas.add(new DinamicQueue<Pessoa>());
-        caixas.add(new DinamicQueue<Pessoa>());
-        caixas.add(new DinamicQueue<Pessoa>());
+        caixas = new Dinamic<FilaCaixa>();
+        caixas.add(new FilaCaixa());
+        caixas.add(new FilaCaixa());
+        caixas.add(new FilaCaixa());
     }
 
-    
+    public void chegaNovoCliente(Cliente p) {
+        FilaCaixa menor = caixas.get(0);
+        for (FilaCaixa var : caixas) {
+            menor = menor.compareTo(var) < 0 ? menor : var;
+        }
+        menor.enqueue(p);
+    }
+
+    public void atendeCliente(int n) {
+        caixas.get(n).dequeue();
+    }
+
+    public void veSeAbreFila() {
+        
+        for (FilaCaixa fila : caixas)
+            if(fila.size() > 5)
+                for (FilaCaixa caixa : caixas)
+                    if(!caixa.getStatus()){
+                        caixa.abreFila();
+                        return;
+                    }
+        
+        System.out.println("Sem cixas disponiveis!");
+    }
 }
