@@ -1,6 +1,6 @@
 package upe.ecomp.ed.questao1;
 
-import upe.ecomp.ed.Queue;
+import upe.ecomp.ed.EscorelD.Queue;
 
 /**
  * AntQueue

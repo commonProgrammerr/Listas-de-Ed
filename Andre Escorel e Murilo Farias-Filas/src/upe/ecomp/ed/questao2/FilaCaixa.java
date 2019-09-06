@@ -1,6 +1,6 @@
 package upe.ecomp.ed.questao2;
 
-import upe.ecomp.ed.DinamicQueue;
+import upe.ecomp.ed.EscorelD.DinamicQueue;
 
 /**
  * FilaCaixa

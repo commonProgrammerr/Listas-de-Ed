@@ -1,4 +1,4 @@
-package upe.ecomp.ed;
+package upe.ecomp.ed.EscorelD;
 
 /**
  * Estatica

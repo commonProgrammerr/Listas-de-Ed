@@ -1,4 +1,4 @@
-package upe.ecomp.ed;
+package upe.ecomp.ed.EscorelD;
 /**
  * Queue
  */
@@ -22,5 +22,11 @@ public class Queue<T> extends Estatica<T> {
 
     public T peek() {
         return super.get(0);
+    }
+
+    public T pop(){
+        T out = this.get(0);
+        remove(0);
+        return out;
     }
 }
