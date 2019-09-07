@@ -1,5 +1,7 @@
 package upe.ecomp.ed.questao2;
 
+import java.util.Random;
+
 import upe.ecomp.ed.EscorelD.Dinamic;
 
 /**
@@ -15,6 +17,18 @@ public class Loja {
         caixas.add(new FilaCaixa());
     }
 
+    public void abreFila() {
+        FilaCaixa open = new FilaCaixa();
+        int caixa = (new Random()).nextInt(caixas.size());
+        caixas.add(open, caixa);
+        System.out.println("Caixa " + caixas.indexOf(open) + " aberto!");
+    }
+    public void fechaFila() {
+        int caixa = (new Random()).nextInt(caixas.size());
+        caixas.remove(caixas.get(caixa));
+        System.out.println("Caixa "+ caixa + " fechado!");
+    }
+
     public void chegaNovoCliente(Cliente p) {
         FilaCaixa menor = caixas.get(0);
         for (FilaCaixa var : caixas) {
@@ -28,15 +42,13 @@ public class Loja {
     }
 
     public void veSeAbreFila() {
-        
-        for (FilaCaixa fila : caixas)
-            if(fila.size() > 5)
-                for (FilaCaixa caixa : caixas)
-                    if(!caixa.getStatus()){
-                        caixa.abreFila();
-                        return;
-                    }
-        
-        System.out.println("Sem cixas disponiveis!");
+        for (FilaCaixa var : caixas)
+            if(var.size() >= 10)
+                if(caixas.size() >= 10){
+                    System.out.println("Sem cixas disponiveis!");
+                    break;
+                }
+                else
+                    caixas.add(new FilaCaixa());
     }
 }

@@ -7,26 +7,25 @@ import upe.ecomp.ed.EscorelD.DinamicQueue;
  */
 public class FilaCaixa extends DinamicQueue<Cliente> implements Comparable<FilaCaixa>{
     
-    private boolean status;
-    
     public FilaCaixa() {
         super();
-        status = true;
+    }
+    @Override
+    public boolean add(Cliente in) {
+        if(this.size() < 10)
+            return super.add(in);
+        else
+            return false;
     }
 
+    @Override
+    public boolean add(Cliente in, int index) {
+        if(this.size() < 10)
+            return super.add(in, index);
+        else
+            return false;
+    }
     
-    public void abreFila() {
-        status = true;    
-    }
-
-    public void fechaFila() {
-        status = false;
-    }
-
-    public boolean getStatus() {
-        return status;
-    }
-
     @Override
     public int compareTo(FilaCaixa o) {
         return this.size() - o.size();

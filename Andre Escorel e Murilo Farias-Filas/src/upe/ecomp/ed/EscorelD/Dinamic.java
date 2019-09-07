@@ -17,7 +17,7 @@ public class Dinamic<T> implements Iterable<T> {
     public void print() {
         System.out.println(this.toString());
     }
-    public void add(T in) {
+    public boolean add(T in) {
         Node<T> node = new Node<T>(in);
         if (head == null) 
             tail = head = node; 
@@ -26,9 +26,10 @@ public class Dinamic<T> implements Iterable<T> {
             tail = node; 
         }
         size++;
+        return true;
     }
 
-    public void add(T in, int index) {
+    public boolean add(T in, int index) {
         Node<T> j = head;
         for (int i = 0; i < index; i++)
             j = j.next;
@@ -36,6 +37,7 @@ public class Dinamic<T> implements Iterable<T> {
         aux.next = j.next;
         j.next = aux;
         size++;
+        return true;
     }
 
     public T get(int index) {
@@ -55,6 +57,17 @@ public class Dinamic<T> implements Iterable<T> {
                 size--;
                 break;
             }
+    }
+
+    public int indexOf(T obj) {
+        int i = 0;
+        for (T var : this) {
+            if(var == obj)
+                return i;
+            else
+                i++;
+        }
+        return -1;
     }
     public int size() {
         return size;
