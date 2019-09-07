@@ -13,6 +13,11 @@ public class Formiga implements Comparable<Formiga>{
     }
 
     @Override
+    public String toString() {
+        return "Nome:" + nome + " - Prioridde:" + prioridade;
+    }
+    
+    @Override
     public int compareTo(Formiga o) {
         return this.prioridade - o.prioridade;
     }

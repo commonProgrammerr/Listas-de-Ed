@@ -20,17 +20,20 @@ public class Estatica<T> {
     }
     
     public void add(T in) {
-        if(tamanho + 1 == dados.length)
+        if(tamanho >= dados.length)
             upSize();
-        dados[tamanho++] = in;   
+        dados[tamanho] = in;
+        tamanho++;   
     }
 
     public void add(T in, int index) {
-        if(tamanho + 1 == dados.length)
-            upSize();
-        for (int i = tamanho; i >= index; i--)
+        if(tamanho == dados.length)
+            upSize();     
+        for (int i = tamanho-1; i >= index; i--)
             dados[i+1] = dados[i];
         dados[index] = in;
+        tamanho++;
+    
     }
 
     public T get(int index){
@@ -45,10 +48,16 @@ public class Estatica<T> {
     }
 
     public void print(){
-        System.out.print("[");
-        for (int i = 0; i < tamanho; i++) 
-            System.out.print(dados[i].toString() + ",");
-        System.out.println(dados[tamanho].toString() + "]");
+        System.out.print("Size: " + tamanho + " - [");
+        
+        for (int i = 0; i < tamanho; i++)
+            if(dados[i] != null)
+                if(i < tamanho -1) 
+                    System.out.print(dados[i] + ", ");
+                else
+                    System.out.print(dados[i]);
+
+        System.out.println("]");
     }
 
     public int size() {

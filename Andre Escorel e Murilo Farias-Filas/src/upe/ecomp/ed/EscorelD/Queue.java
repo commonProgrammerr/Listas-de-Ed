@@ -2,31 +2,37 @@ package upe.ecomp.ed.EscorelD;
 /**
  * Queue
  */
-public class Queue<T> extends Estatica<T> {
+public class Queue<T> {
 
+    private Estatica<T> queue;
+    
     public Queue(int capacidade) {
-        super(capacidade);
+        queue = new Estatica<T>(capacidade);
     }
 
     public void enqueue(T in) {
-        this.add(in);
+        queue.add(in);
     }
 
-    public void enqueue(T in, int index) {
-        this.add(in, index);
+    public void add(T in, int index) {
+        queue.add(in, index);
     }
-
     public T dequeue(){
-        return this.remove(0);
+        return queue.remove(0);
     }
 
     public T peek() {
-        return super.get(0);
+        return queue.get(0);
     }
 
-    public T pop(){
-        T out = this.get(0);
-        remove(0);
-        return out;
+    public T get(int index) {
+        return queue.get(index);
+    }
+    public int size() {
+        return queue.size();
+    }
+
+    public void print(){
+        queue.print();
     }
 }
