@@ -10,14 +10,6 @@
             "request": "launch",
             "console": "internalConsole",
             "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-Lista<André Escorel e Murilo Antonio - LIstas>",
-            "request": "launch",
-            "console": "internalConsole",
-            "mainClass": "upe.ecomp.ed.questao4.Lista",
-            "projectName": "André Escorel e Murilo Antonio - Recursividade"
         }
     ]
 }

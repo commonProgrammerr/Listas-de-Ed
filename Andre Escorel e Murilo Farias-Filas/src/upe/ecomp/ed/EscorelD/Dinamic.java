@@ -17,7 +17,8 @@ public class Dinamic<T> implements Iterable<T> {
     public void print() {
         System.out.println(this.toString());
     }
-    public boolean add(T in) {
+    
+    protected boolean add(T in) {
         Node<T> node = new Node<T>(in);
         if (head == null) 
             tail = head = node; 

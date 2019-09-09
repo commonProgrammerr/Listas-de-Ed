@@ -10,14 +10,15 @@ public class FilaCaixa extends DinamicQueue<Cliente> implements Comparable<FilaC
     public FilaCaixa() {
         super();
     }
+    
     @Override
-    public boolean add(Cliente in) {
+    public boolean enqueue(Cliente in) {
         if(this.size() < 10)
-            return super.add(in);
+            return super.enqueue(in);
         else
             return false;
     }
-
+    
     @Override
     public boolean add(Cliente in, int index) {
         if(this.size() < 10)

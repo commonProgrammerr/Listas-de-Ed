@@ -2,8 +2,8 @@ package upe.ecomp.ed.EscorelD;
 
 public class DinamicQueue<T> extends Dinamic<T> {
 
-    public void enqueue(T in){
-        this.add(in);
+    public boolean enqueue(T in){
+        return this.add(in);
     }
 
     public T peek(){

@@ -1,17 +1,16 @@
 package upe.ecomp.ed.questao2;
 
 import java.util.Random;
-
-import upe.ecomp.ed.EscorelD.Dinamic;
+import upe.ecomp.ed.EscorelD.DinamicList;
 
 /**
  * Loja
  */
 public class Loja {
-    private Dinamic<FilaCaixa> caixas;
+    private DinamicList<FilaCaixa> caixas;
     
     public Loja() {
-        caixas = new Dinamic<FilaCaixa>();
+        caixas = new DinamicList<FilaCaixa>();
         caixas.add(new FilaCaixa());
         caixas.add(new FilaCaixa());
         caixas.add(new FilaCaixa());
