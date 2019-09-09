@@ -12,7 +12,7 @@ public class DinamicQueue<T> extends Dinamic<T> {
     
     public T dequeue() {
         T out = peek();
-        remove(out);
+        remove(peek());
         return out;
     }
 }

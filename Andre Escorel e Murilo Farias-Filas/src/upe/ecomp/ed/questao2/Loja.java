@@ -20,12 +20,13 @@ public class Loja {
         FilaCaixa open = new FilaCaixa();
         int caixa = (new Random()).nextInt(caixas.size());
         caixas.add(open, caixa);
-        System.out.println("Caixa " + caixas.indexOf(open) + " aberto!");
+        System.out.println("Caixa " + (caixa + 1) + " aberto!");
     }
+
     public void fechaFila() {
         int caixa = (new Random()).nextInt(caixas.size());
         caixas.remove(caixas.get(caixa));
-        System.out.println("Caixa "+ caixa + " fechado!");
+        System.out.println("Caixa "+ (caixa + 1) + " fechado!");
     }
 
     public void chegaNovoCliente(Cliente p) {
@@ -37,7 +38,10 @@ public class Loja {
     }
 
     public void atendeCliente(int n) {
-        caixas.get(n).dequeue();
+        if((n-1) < caixas.size() && (n- 1) > 0)
+            caixas.get(n-1).dequeue();
+        else
+            throw new IllegalArgumentException();
     }
 
     public void veSeAbreFila() {
@@ -48,6 +52,13 @@ public class Loja {
                     break;
                 }
                 else
-                    caixas.add(new FilaCaixa());
+                    abreFila();
     }
-}
+
+    public void print() {
+        for (FilaCaixa var : caixas) {
+            var.print();
+        }
+        System.out.println();
+    }
+ }

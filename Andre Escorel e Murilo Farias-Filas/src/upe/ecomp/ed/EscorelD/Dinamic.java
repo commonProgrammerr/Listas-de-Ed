@@ -15,7 +15,11 @@ public class Dinamic<T> implements Iterable<T> {
     }
 
     public void print() {
-        System.out.println(this.toString());
+        System.out.print("[");
+        for (T var : this) {
+            System.out.print(var.toString() + ",");
+        }
+        System.out.println("]");
     }
     
     protected boolean add(T in) {
@@ -43,21 +47,35 @@ public class Dinamic<T> implements Iterable<T> {
 
     public T get(int index) {
         int j = 0;
-        for (Node<T> i = head; i != null; i = i.next)
-            if (j == index)
-                return i.data;
-            else
-                j++;
-        return null;
+        if(index == 0)
+            return head.data;
+        else if(index == size - 1)
+            return tail.data;
+        else
+            for (Node<T> i = head; i != null; i = i.next)
+                if (j == index)
+                    return i.data;
+                else
+                    j++;
+            return null;
     }
 
     public void remove(T alvo) {
-        for (Node<T> i = head; i != null; i = i.next)
-            if (i.next.data == alvo) {
-                i.next = i.next.next;
-                size--;
-                break;
-            }
+        if(alvo.equals(head.data))
+            head = head.next;
+        else
+            for (Node<T> i = head; i != null; i = i.next)
+                if(i.next == tail){
+                    if(i.data.equals(alvo)) {
+                        tail = i;
+                        tail.next = null;
+                    }
+                    break;
+                } else if (i.next.data.equals(alvo)) {
+                    i.next = i.next.next;
+                    break;
+                }  
+        size--;
     }
 
     public int indexOf(T obj) {

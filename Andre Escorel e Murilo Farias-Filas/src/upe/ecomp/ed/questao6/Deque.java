@@ -17,28 +17,43 @@ public class Deque<T> implements Iterable<T>{
     }
 
     public void addDir(T data) {
-        if(head == null)
-            tail = head = new Node<T>(data);
-        else
-            tail = new Node<T>(head, data);
+        if(size <= 0){
+            head = new Node<T>(data);
+            tail = head;
+        }
+        else{
+            Node<T> a = new Node<T>(data);
+            tail.next = a;
+            a.before = tail;
+            tail = a;
+        }
         size++;
     }
 
     public void addEsq(T data) {
-        if(head == null)
-            tail = head = new Node<T>(data);
-        else
-            head = new Node<T>(tail, data);
+        if(size <= 0){
+            head = new Node<T>(data);
+            tail = head;
+        }
+        else {
+            Node<T> a = new Node<T>(data);
+            head.before = a;
+            a.next = head;
+            head = a;
+        }
         size++;
     }
 
     public T popFirst() {
         if(size <= 0)
             return null;
-        T out = head.data;
-        head = head.next;
-        head.before.clear();
-        return out;
+        else {
+            T out = head.data;
+            head = head.next;
+            head.before = null;
+            return out;
+        }
+        
     }
 
     public T popLast() {
@@ -46,14 +61,21 @@ public class Deque<T> implements Iterable<T>{
             return null;
         T out = tail.data;
         tail = tail.before;
-        tail.next.clear();
+        tail.next = null;
         return out;
     }
 
     public void remove(T alvo) {
         for (Node<T> i = head; i != null; i = i.next)
             if(i.data == alvo){
-                i.clear();
+                if(i.before != null)
+                    i.before.next = i.next;
+                else if(i.next != null)
+                    i.next.before = i.before;
+                else{
+                    tail = null;
+                    head = null;
+                }
                 return;
             }
         

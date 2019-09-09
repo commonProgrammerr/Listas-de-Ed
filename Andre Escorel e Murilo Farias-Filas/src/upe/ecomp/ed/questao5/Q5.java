@@ -1,6 +1,5 @@
 package upe.ecomp.ed.questao5;
 
-import upe.ecomp.ed.EscorelD.PriorityQueue;
 import upe.ecomp.ed.EscorelD.Queue;
 
 /**
