@@ -4,6 +4,10 @@ import upe.ecomp.ed.Questao08.*;
 import upe.ecomp.ed.Questao09.*;
 import upe.ecomp.ed.Questao10.*;
 import upe.ecomp.ed.Questao11.*;
+import upe.ecomp.ed.Questao3.Questao3;
+import upe.ecomp.ed.Questao4.PilhaPilha;
+import upe.ecomp.ed.Questao5.ListaR;
+import upe.ecomp.ed.Questao6.Questao06;
 import upe.ecomp.ed.resources.*;
 
 public class Main {
@@ -37,7 +41,54 @@ public class Main {
 		biblio.print();
 		System.out.println();
 
-		System.out.println("Testes quest�o 8\n");
+
+
+		System.out.println("\nTestes quest�o 3\n");
+		PilhaDinamica<Integer> p1 = new PilhaDinamica<>(); 
+        PilhaDinamica<Integer> p2 = new PilhaDinamica<>();      
+        for (int i = 0; i < 20; i++) {
+            p2.push(i);
+            if(i > 10)
+                p1.push(i);
+		}
+        System.out.println(p1);
+        System.out.println(p2);
+        System.out.println(Questao3.insideOf(p1, p2));
+        System.out.println(p2.pop() + " removido");
+        System.out.println(p1);
+        System.out.println(p2);
+		System.out.println(Questao3.insideOf(p1, p2));
+		
+
+		System.out.println("\nTestes quest�o 4\n");
+		PilhaPilha pilhaPilha = new PilhaPilha();
+		for (int i = 0; i < 16; i++)
+			pilhaPilha.push(i);
+
+		System.out.println(pilhaPilha);
+		for (int i = 0; i < 4; i++) 
+			pilhaPilha.pop();
+		System.out.println(pilhaPilha);
+		System.out.println("soma:" + pilhaPilha.sum());
+
+
+		System.out.println("\nTestes quest�o 5\n");
+		ListaR<Integer> tr = new ListaR<>();
+		for (int i = 0; i < 10; i++)
+			tr.add(i);
+		System.out.println(tr);
+		for (int i = 0; i < 5; i++)
+			tr.remove(i);
+		System.out.println(tr);
+
+		System.out.println("\nTestes quest�o 6\n");
+		PilhaDinamica<Integer> aux = new PilhaDinamica<>();
+		for (int i = 0; i < 16; i++)
+			aux.push(i);
+		System.out.println(aux);
+		Questao06.filter(aux, new FilaDinamica<Integer>());
+
+		System.out.println("\nTestes quest�o 8\n");
 		System.out.println(Divisao.div(10,2));
 		System.out.println(Divisao.div(10,3));
 		System.out.println(Divisao.div(10,4));

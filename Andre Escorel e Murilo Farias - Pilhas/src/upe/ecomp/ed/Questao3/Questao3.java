@@ -48,7 +48,7 @@ public class Questao3 {
 
     public static void main(String[] args) {
         PilhaDinamica<Integer> a = new PilhaDinamica<>(); 
-            PilhaDinamica<Integer> b = new PilhaDinamica<>();
+        PilhaDinamica<Integer> b = new PilhaDinamica<>();
             
         for (int i = 0; i < 20; i++) {
             b.push(i);

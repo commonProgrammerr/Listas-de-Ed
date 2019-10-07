@@ -23,31 +23,32 @@ public class ListaR<T> {
     }
 
     private void remove(T target, Node<T> current) {
-        if(current != null){
-           if(current.getProximo().getInfo() == target)
-                current.setProximo(current.getProximo().getProximo());
+        if(current.getProximo() != null){
+            if(current.getProximo().getInfo() == target)
+                current.getProximo().setProximo(current.getProximo().getProximo().getProximo());
             else 
                 remove(target, current.getProximo());
         }
     }
 
     public void remove(T target) {
-        this.remove(target, head);
+            if(head.getInfo() == target)
+            head = head.getProximo();
+            this.remove(target, head);
     }
     
     private String toString(Node<T> current) {
         String out = "";
         if(current == head)
             out += "[";
-        out += current.toString();
+        out += current.getInfo().toString();
         if(current.getProximo() == null)
             return out + "]";
         else 
             return out + "," + toString(current.getProximo());
     }
 
-    @Override
     public String toString() {
-        return this.toString(head);
+        return toString(head);
     }
 }

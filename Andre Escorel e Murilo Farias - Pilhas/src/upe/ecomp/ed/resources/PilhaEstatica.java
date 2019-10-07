@@ -74,22 +74,17 @@ public class PilhaEstatica<T> implements TADPilha<T>, Iterable<T> {
 	public Iterator<T> iterator() 
     { 
         return new Iterator<T>() {
-            int current = 0;
+            int current = qtd -1;
         
             public boolean hasNext() 
             { 
-                return current < size(); 
+                return current > -1; 
             } 
             
             public T next() 
             { 
-                return dados[current++];
+                return dados[current--];
             } 
-            
-            public void remove() 
-            { 
-                throw new UnsupportedOperationException(); 
-            }
         }; 
     }
 

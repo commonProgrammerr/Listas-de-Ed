@@ -1,7 +1,8 @@
 package upe.ecomp.ed.resources;
 
+import java.util.Iterator;
 
-public class FilaDinamica<T> implements TADFila<T> {
+public class FilaDinamica<T> implements TADFila<T>, Iterable<T> {
 
 	private Node<T> inicio, fim;
 	private int qtd;
@@ -63,4 +64,27 @@ public class FilaDinamica<T> implements TADFila<T> {
 		System.out.println(this.toString());
 	}
 
+	public Iterator<T> iterator() 
+    { 
+        return new Iterator<T>() {
+            Node<T> current = inicio;
+        
+            public boolean hasNext() 
+            { 
+                return current != null; 
+            } 
+            
+            public T next() 
+            { 
+                T data = current.getInfo(); 
+                current = current.getProximo(); 
+                return data; 
+            } 
+            
+            public void remove() 
+            { 
+                throw new UnsupportedOperationException(); 
+            }
+        }; 
+    }
 }

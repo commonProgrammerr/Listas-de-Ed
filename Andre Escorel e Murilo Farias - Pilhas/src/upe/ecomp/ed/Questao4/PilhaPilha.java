@@ -13,13 +13,17 @@ public class PilhaPilha {
     }
 
     public PilhaEstatica<Integer> sum() {
+        PilhaEstatica<Integer> aux = new PilhaEstatica<>(pilha.size());
         PilhaEstatica<Integer> sum = new PilhaEstatica<>(pilha.size());
         for (PilhaEstatica<Integer> pilhinha : pilha) {
             int soma = 0;
             for (Integer num : pilhinha) {
                 soma += num;
             }
-            sum.push(soma);
+            aux.push(soma);
+        }
+        for (Integer var : aux) {
+            sum.push(var);
         }
         return sum;
     }
@@ -32,12 +36,14 @@ public class PilhaPilha {
                     sum += pilha.top().pop();
                 pilha.pop();
             }
-            this.push(sum);
+            pilha.push(new PilhaEstatica<Integer>(10));
+            pilha.top().push(sum);
         } 
         
-        if(pilha.size() == 0)
+        else if(pilha.size() == 0)
             pilha.push(new PilhaEstatica<Integer>(10));
-        else if(pilha.top().size() >= 10)
+        
+        if(pilha.top().size() >= 10)
             pilha.push(new PilhaEstatica<Integer>(10));
         
         pilha.top().push(data);
@@ -54,12 +60,13 @@ public class PilhaPilha {
 
     @Override
     public String toString() {
-        String out = "";
+        String out = "Topo";
         for (PilhaEstatica<Integer> var : pilha) {
-            out += "->";
-            out += var.toString().replace("[", "(");
-            out += var.toString().replace("]", ")");
-            out +="\n";
+            out += "-> (";
+                for (Integer a : var) {
+                    out += a.toString() + ",";
+                }
+            out += ")";
         }
         return out; 
     }
