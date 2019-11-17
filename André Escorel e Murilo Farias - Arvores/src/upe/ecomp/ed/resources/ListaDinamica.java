@@ -1,8 +1,6 @@
 package upe.ecomp.ed.resources;
 
-import java.util.Iterator;
-
-public class ListaDinamica<T> implements TADLista<T>, Iterable<T> {
+public class ListaDinamica<T> implements TADLista<T> {
 
 	private Node<T> inicio;
 	private int qtd;
@@ -22,6 +20,20 @@ public class ListaDinamica<T> implements TADLista<T>, Iterable<T> {
 			}
 			qtd++;
 
+	}
+	
+	public void inserirFinal(T e) {
+		Node<T> novo = new Node<T>(e);
+		if (inicio == null) {
+			inicio = novo;
+		} else {
+			Node<T> aux = inicio;
+			while(aux.proximo!=null) {
+				aux=aux.proximo;
+			}
+			aux.setProximo(novo);
+		}
+		qtd++;
 	}
 
 	
@@ -49,7 +61,7 @@ public class ListaDinamica<T> implements TADLista<T>, Iterable<T> {
 	public void remover(T e) {
 		if (inicio != null) {
 			if (inicio.info.equals(e)) {
-				// elemento a ser removido estï¿½ no inicio
+				// elemento a ser removido está no inicio
 				inicio = inicio.proximo;
 			} else {
 				Node<T> p = inicio;
@@ -105,27 +117,4 @@ public class ListaDinamica<T> implements TADLista<T>, Iterable<T> {
 		return inicio;
 	}
 
-	public Iterator<T> iterator() 
-    { 
-        return new Iterator<T>() {
-            Node<T> current = inicio;
-        
-            public boolean hasNext() 
-            { 
-                return current != null; 
-            } 
-            
-            public T next() 
-            { 
-                T data = current.getInfo(); 
-                current = current.getProximo(); 
-                return data; 
-            } 
-            
-            public void remove() 
-            { 
-                throw new UnsupportedOperationException(); 
-            }
-        }; 
-    }
 }

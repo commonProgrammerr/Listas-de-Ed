@@ -1,18 +1,12 @@
 package upe.ecomp.ed.resources;
 
-import java.util.Iterator;
-
-public class PilhaEstatica<T> implements TADPilha<T>, Iterable<T> {
+public class PilhaEstatica<T> implements TADPilha<T> {
 
 	private T[] dados;
 	private int qtd;
 	
 	public PilhaEstatica() {
 		dados = (T[]) new Object[5];
-	}
-
-	public PilhaEstatica(int size) {
-		dados = (T[]) new Object[size];
 	}
 	
 	public void push(T e) {
@@ -70,22 +64,5 @@ public class PilhaEstatica<T> implements TADPilha<T>, Iterable<T> {
 	public void imprime() {
 		System.out.println(this.toString());
 	}
-
-	public Iterator<T> iterator() 
-    { 
-        return new Iterator<T>() {
-            int current = qtd -1;
-        
-            public boolean hasNext() 
-            { 
-                return current > -1; 
-            } 
-            
-            public T next() 
-            { 
-                return dados[current--];
-            } 
-        }; 
-    }
 
 }
